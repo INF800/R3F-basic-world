@@ -1,0 +1,29 @@
+.canvas {
+  /* width and height need "!important" suffix */
+  width: 500px !important;
+  height: 500px !important;
+  box-shadow: 10px 10px #7e7e7e;
+  background-color: rgb(15, 15, 15);
+
+  /* center any element */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  /*extra margin on top*/
+  margin-top: 100px;
+}
+
+.tagline {
+  margin: 50px;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+a {
+  color: black;
+}
