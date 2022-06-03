@@ -10,7 +10,7 @@ function Box() {
     <mesh
       onClick={() => {
         // todo: fix falling beyond on jump.
-        // note: horiontal jump i.e `api.velocity.set(2, 10, 0)` gives expected behaviour
+        // note: horiontal jump i.e `api.velocity.set(0, 10, 0)` gives expected behaviour
         api.velocity.set(2, 10, 0);
       }}
       ref={ref}
