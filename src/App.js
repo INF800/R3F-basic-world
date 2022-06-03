@@ -5,9 +5,16 @@ import { useBox, Physics } from "@react-three/cannon";
 import "./styles.css";
 
 function Box() {
-  const [ref] = useBox(() => ({ mass: 1, position: [0, 2, 0] }));
+  const [ref, api] = useBox(() => ({ mass: 1, position: [0, 2, 0] }));
   return (
-    <mesh ref={ref}>
+    <mesh
+      onClick={() => {
+        // todo: fix falling beyond on jump.
+        // note: horiontal jump i.e `api.velocity.set(2, 10, 0)` gives expected behaviour
+        api.velocity.set(2, 10, 0);
+      }}
+      ref={ref}
+    >
       <boxBufferGeometry attach="geometry" />
       <meshLambertMaterial attach="material" color="hotpink" />
     </mesh>
