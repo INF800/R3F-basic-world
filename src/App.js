@@ -1,12 +1,13 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
-import { useBox } from "@react-three/cannon";
+import { useBox, Physics } from "@react-three/cannon";
 
 import "./styles.css";
 
 function Box() {
+  const [ref] = useBox(() => ({ mass: 1, position: [0, 2, 0] }));
   return (
-    <mesh position={[0, 2, 0]}>
+    <mesh ref={ref}>
       <boxBufferGeometry attach="geometry" />
       <meshLambertMaterial attach="material" color="hotpink" />
     </mesh>
@@ -14,8 +15,12 @@ function Box() {
 }
 
 function Plane() {
+  const [ref] = useBox(() => ({
+    position: [0, 0, 0],
+    rotation: [-Math.PI / 2, 0, 0]
+  }));
   return (
-    <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+    <mesh ref={ref}>
       <planeBufferGeometry attach="geometry" args={[10, 10]} />
       <meshLambertMaterial attach="material" color="lightblue" />
     </mesh>
@@ -30,8 +35,10 @@ export default function App() {
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 15, 10]} angle={0.3} />
         <Stars />
-        <Plane />
-        <Box />
+        <Physics>
+          <Plane />
+          <Box />
+        </Physics>
       </Canvas>
 
       <div className="tagline">
